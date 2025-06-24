@@ -295,3 +295,183 @@ export const useDeadlines = () => {
     getDeadlinesByType: (type: Deadline['type']) => getDeadlinesByType(type)
   };
 };
+
+// Hook for DreamFit Analyzer
+export const useDreamFitAnalyzer = () => {
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [dreamColleges, setDreamColleges] = useState<any[]>([]);
+
+  const loadDreamColleges = async () => {
+    setIsAnalyzing(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Mock dream colleges data
+    const colleges = [
+      {
+        id: 'dream_001',
+        name: 'IIT Delhi',
+        course: 'Computer Science Engineering',
+        location: 'New Delhi',
+        type: 'Government' as const,
+        ranking: 2,
+        fees: '₹2.5L/year',
+        lastYearCutoff: {
+          general: 95,
+          obc: 92,
+          sc: 85,
+          st: 82,
+          ews: 93
+        },
+        subjectRequirements: {
+          physics: 95,
+          chemistry: 92,
+          mathematics: 98,
+          english: 85
+        },
+        admissionMode: 'Entrance' as const,
+        entranceExam: 'JEE Advanced'
+      },
+      {
+        id: 'dream_002',
+        name: 'BITS Pilani',
+        course: 'Information Technology',
+        location: 'Pilani, Rajasthan',
+        type: 'Private' as const,
+        ranking: 25,
+        fees: '₹4.2L/year',
+        lastYearCutoff: {
+          general: 88,
+          obc: 88,
+          sc: 88,
+          st: 88,
+          ews: 88
+        },
+        subjectRequirements: {
+          physics: 90,
+          chemistry: 85,
+          mathematics: 95,
+          english: 80
+        },
+        admissionMode: 'Entrance' as const,
+        entranceExam: 'BITSAT'
+      },
+      {
+        id: 'dream_003',
+        name: 'VIT Vellore',
+        course: 'Computer Science Engineering',
+        location: 'Vellore, Tamil Nadu',
+        type: 'Private' as const,
+        ranking: 15,
+        fees: '₹1.8L/year',
+        lastYearCutoff: {
+          general: 85,
+          obc: 82,
+          sc: 75,
+          st: 72,
+          ews: 83
+        },
+        subjectRequirements: {
+          physics: 85,
+          chemistry: 80,
+          mathematics: 90,
+          english: 75
+        },
+        admissionMode: 'Both' as const,
+        entranceExam: 'VITEEE'
+      },
+      {
+        id: 'dream_004',
+        name: 'NIT Trichy',
+        course: 'Electronics Engineering',
+        location: 'Tiruchirappalli, Tamil Nadu',
+        type: 'Government' as const,
+        ranking: 8,
+        fees: '₹1.2L/year',
+        lastYearCutoff: {
+          general: 92,
+          obc: 88,
+          sc: 80,
+          st: 75,
+          ews: 90
+        },
+        subjectRequirements: {
+          physics: 92,
+          chemistry: 88,
+          mathematics: 90,
+          english: 80
+        },
+        admissionMode: 'Entrance' as const,
+        entranceExam: 'JEE Main'
+      },
+      {
+        id: 'dream_005',
+        name: 'SRM Chennai',
+        course: 'Data Science',
+        location: 'Chennai, Tamil Nadu',
+        type: 'Private' as const,
+        ranking: 35,
+        fees: '₹2.5L/year',
+        lastYearCutoff: {
+          general: 80,
+          obc: 78,
+          sc: 70,
+          st: 68,
+          ews: 79
+        },
+        subjectRequirements: {
+          physics: 80,
+          chemistry: 75,
+          mathematics: 85,
+          english: 75
+        },
+        admissionMode: 'Both' as const,
+        entranceExam: 'SRMJEEE'
+      },
+      {
+        id: 'dream_006',
+        name: 'Manipal Institute',
+        course: 'Mechanical Engineering',
+        location: 'Manipal, Karnataka',
+        type: 'Private' as const,
+        ranking: 45,
+        fees: '₹3.2L/year',
+        lastYearCutoff: {
+          general: 82,
+          obc: 80,
+          sc: 72,
+          st: 70,
+          ews: 81
+        },
+        subjectRequirements: {
+          physics: 85,
+          chemistry: 80,
+          mathematics: 88,
+          english: 75
+        },
+        admissionMode: 'Entrance' as const,
+        entranceExam: 'MET'
+      }
+    ];
+    
+    setDreamColleges(colleges);
+    setIsAnalyzing(false);
+  };
+
+  const analyzeGoal = async (studentData: any) => {
+    setIsAnalyzing(true);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setIsAnalyzing(false);
+    return true;
+  };
+
+  useEffect(() => {
+    loadDreamColleges();
+  }, []);
+
+  return {
+    dreamColleges,
+    isAnalyzing,
+    analyzeGoal,
+    loadDreamColleges
+  };
+};

@@ -67,6 +67,7 @@ import CollegeSuggestions from './modules/CollegeSuggestions';
 import EntranceExamFinder from './modules/EntranceExamFinder';
 import MockCounselling from './modules/MockCounselling';
 import StudyAbroad from './modules/StudyAbroad';
+import DreamFitAnalyzer from './modules/DreamFitAnalyzer';
 
 interface College {
   id: string;
@@ -374,6 +375,15 @@ function Dashboard() {
       color: 'from-green-500 to-green-600',
       bgColor: 'from-green-50 to-green-100',
       isAI: false
+    },
+    {
+      id: 'dreamfit-analyzer',
+      title: 'DreamFit Analyzer',
+      description: 'Analyze what it takes to reach your dream college with target planning',
+      icon: Target,
+      color: 'from-pink-500 to-purple-600',
+      bgColor: 'from-pink-50 to-purple-100',
+      isAI: true
     }
   ];
 
@@ -478,6 +488,8 @@ function Dashboard() {
         return <MockCounselling />;
       case 'study-abroad':
         return <StudyAbroad />;
+      case 'dreamfit-analyzer':
+        return <DreamFitAnalyzer />;
       default:
         return null;
     }
