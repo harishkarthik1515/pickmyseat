@@ -29,8 +29,10 @@ import {
   Filter,
   Search,
   MapPin,
-  DollarSign
+  DollarSign,
+  ArrowLeft
 } from 'lucide-react';
+import TNEACounsellingSimulator from '../TNEACounsellingSimulator';
 
 interface CounsellingSession {
   id: string;
@@ -71,6 +73,7 @@ function MockCounselling() {
     quota: 'all',
     category: 'all'
   });
+  const [showTNEASimulator, setShowTNEASimulator] = useState(false);
 
   const counsellingSessions: CounsellingSession[] = [
     {
@@ -229,6 +232,48 @@ function MockCounselling() {
     
     return matchesSearch && matchesLocation && matchesQuota && matchesCategory;
   });
+
+  const handleStartSession = (sessionId: string) => {
+    if (sessionId === 'tnea') {
+      setShowTNEASimulator(true);
+    } else {
+      setSelectedSession(sessionId);
+    }
+  };
+
+  const handleBackFromSimulator = () => {
+    setShowTNEASimulator(false);
+  };
+
+  // If TNEA simulator is active, show it
+  if (showTNEASimulator) {
+    return (
+      <div className="space-y-6">
+        {/* Back Button */}
+        <motion.div
+          className="flex items-center space-x-4"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+        >
+          <motion.button
+            onClick={handleBackFromSimulator}
+            className="flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ArrowLeft className="h-5 w-5" />
+            <span>Back to Mock Counselling</span>
+          </motion.button>
+          <div className="text-sm text-gray-600">
+            <span className="font-medium">TNEA Counselling Simulation</span> - Complete Process
+          </div>
+        </motion.div>
+
+        {/* TNEA Simulator */}
+        <TNEACounsellingSimulator />
+      </div>
+    );
+  }
 
   const renderChoiceFilling = () => (
     <div className="space-y-6">
@@ -624,6 +669,7 @@ function MockCounselling() {
               <div className="text-center py-4">
                 <p className="text-gray-600 mb-4">Ready to start your counselling practice?</p>
                 <motion.button
+                  onClick={() => handleStartSession(session.id)}
                   className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors flex items-center space-x-2 mx-auto"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -802,7 +848,7 @@ function MockCounselling() {
                   whileTap={{ scale: 0.95 }}
                   onClick={(e) => {
                     e.stopPropagation();
-                    setSelectedSession(session.id);
+                    handleStartSession(session.id);
                   }}
                 >
                   <Play className="h-4 w-4" />
