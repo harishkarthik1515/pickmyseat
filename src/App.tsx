@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import Dashboard from './components/Dashboard';
+import MyCounsellApp from './mycounsell/App';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/mycounsell/*" element={<MyCounsellApp />} />
     </Routes>
   );
 }

@@ -65,9 +65,8 @@ import {
 import CourseRecommendation from './modules/CourseRecommendation';
 import CollegeSuggestions from './modules/CollegeSuggestions';
 import EntranceExamFinder from './modules/EntranceExamFinder';
-import MockCounselling from './modules/MockCounselling';
-import StudyAbroad from './modules/StudyAbroad';
 import DreamFitAnalyzer from './modules/DreamFitAnalyzer';
+import StudyAbroad from './modules/StudyAbroad';
 
 interface College {
   id: string;
@@ -359,15 +358,6 @@ function Dashboard() {
       isAI: false
     },
     {
-      id: 'mock-counselling',
-      title: 'Mock Counselling Flow',
-      description: 'Practice TNEA/JoSAA/NEET counselling process',
-      icon: Users,
-      color: 'from-orange-500 to-orange-600',
-      bgColor: 'from-orange-50 to-orange-100',
-      isAI: false
-    },
-    {
       id: 'study-abroad',
       title: 'Study Abroad Guide',
       description: 'Country selector, scholarships, and step-by-step guidance',
@@ -484,12 +474,10 @@ function Dashboard() {
         return <CollegeSuggestions />;
       case 'entrance-exam-finder':
         return <EntranceExamFinder />;
-      case 'mock-counselling':
-        return <MockCounselling />;
-      case 'study-abroad':
-        return <StudyAbroad />;
       case 'dreamfit-analyzer':
         return <DreamFitAnalyzer />;
+      case 'study-abroad':
+        return <StudyAbroad />;
       default:
         return null;
     }

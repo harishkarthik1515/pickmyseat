@@ -780,6 +780,28 @@ function LandingPage() {
               Empowering students to make informed decisions about their future
             </motion.p>
             
+            <motion.div
+              className="mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <motion.button
+                onClick={() => navigate('/mycounsell')}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl flex items-center space-x-2 mx-auto"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Users className="h-5 w-5" />
+                <span>Visit MYCOUNSELL</span>
+                <ArrowRight className="h-5 w-5" />
+              </motion.button>
+              <p className="text-gray-500 text-sm mt-2">
+                Practice counselling simulations with AI guidance
+              </p>
+            </motion.div>
+            
             <motion.div 
               className="border-t border-gray-700 pt-6"
               initial={{ opacity: 0, scaleX: 0 }}
